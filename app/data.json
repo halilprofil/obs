@@ -1,0 +1,58 @@
+{
+    "name": "9. Dönem Frontend Uzmanlık Sınıfı - Furkan Özay",
+    "period": "9",
+    "location": "Class 117",
+    "students": [
+        {
+            "id": 1,
+            "name": "Ali Veli",
+            "studentNumber": "20231001",
+            "class": "10A",
+            "age": 16,
+            "gender": "Male",
+            "email": "ali.veli@example.com",
+            "absenceStatus": 0
+
+          },
+          {
+            "id": 2,
+            "name": "Ayşe Yılmaz",
+            "studentNumber": "20231002",
+            "class": "10B",
+            "age": 15,
+            "gender": "Female",
+            "email": "ayse.yilmaz@example.com",
+            "absenceStatus": 0
+          },
+          {
+            "id": 3,
+            "name": "Mehmet Can",
+            "studentNumber": "20231003",
+            "class": "11A",
+            "age": 17,
+            "gender": "Male",
+            "email": "mehmet.can@example.com",
+            "absenceStatus": 0
+          },
+          {
+            "id": 4,
+            "name": "Fatma Demir",
+            "studentNumber": "20231004",
+            "class": "12C",
+            "age": 18,
+            "gender": "Female",
+            "email": "fatma.demir@example.com",
+            "absenceStatus": 0
+          },
+          {
+            "id": 5,
+            "name": "Ahmet Kaya",
+            "studentNumber": "20231005",
+            "class": "9A",
+            "age": 14,
+            "gender": "Male",
+            "email": "ahmet.kaya@example.com",
+            "absenceStatus": 0
+          }
+    ]
+}

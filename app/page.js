@@ -1,95 +1,119 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+"use client";
+import { useState, useEffect } from "react";
+import ClassData from "./data.json";
+import Link from "next/link";
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  
+  
+  const [students, setStudents] = useState(() => {
+    const savedStudents = localStorage.getItem("savedStudents");
+    if (savedStudents) {
+      return JSON.parse(savedStudents);
+    }
+   
+    return ClassData.students.map(student => ({
+      ...student,
+      isAttended: false,
+    }));
+  });
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  const [showAttendance, setShowAttendance] = useState(true);
+
+
+  const handleClick = studentId => {
+    const updatedStudents = students.map(student =>
+      student.id === studentId
+        ? { ...student, isAttended: !student.isAttended
+
+        }
+        : student 
+    );
+
+    setStudents(updatedStudents);
+    
+  };
+
+ 
+  useEffect(() => {
+    localStorage.setItem("savedStudents", JSON.stringify(students));
+    console.log(students);
+  }, [students]);
+
+  function apply(){
+  setShowAttendance(false);
+  const data =  JSON.parse(localStorage.getItem('savedStudents'));
+  const updatedStudents = data.map(student =>
+    !student.isAttended
+      ? { ...student, absenceStatus : `${Number(student.absenceStatus)+1}`
+
+      }
+      : student 
+  );
+  localStorage.setItem("savedStudents", JSON.stringify(updatedStudents));
+  setStudents(updatedStudents);
+  }
+
+  return (
+    <>
+    <div className="container">
+      {showAttendance ? (
+        <ul>
+          {students.map(student => (
+            <li key={student.id}>
+              {student.name}{" "}
+              <input
+                type="checkbox"
+                checked={student.isAttended}
+                onChange={() => handleClick(student.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <>
+          <ul>
+            {students.map(student => (
+              <li key={student.id}>
+                {student.name} - {student.isAttended ? "VAR" : "YOK"}
+              </li>
+            ))}
+          </ul>
+          <div>
+            <span>
+              Katılan öğrenci sayısı: {students.filter(x => x.isAttended).length}
+            </span>{" "}
+            <br />
+            <span>
+              Katılmayan öğrenci sayısı:{" "}
+              {students.filter(x => !x.isAttended).length}
+            </span>
+          </div>
+        </>
+      )}
+
+      {showAttendance && (
+        <button
+          onClick={apply}
+        >
+          Yoklamayı Tamamla
+        </button>
+      )}
+      
+      {!showAttendance && (
+        <>
+        <div className="student-list">
+          <ul>
+            {
+              students.map((x,i)=> <li key={i}>{x.name} <Link href={"/student/" + x.id}> Detay Göster </Link> </li>)
+            }
+          </ul>
+
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        </>
+        
+      )}
+
+       </div>
+    </>
   );
 }
