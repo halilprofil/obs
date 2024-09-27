@@ -6,9 +6,11 @@ export default function Student({ params }) {
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("savedStudents"));
-    const foundStudent = data?.find(x => x.id == id);
-    setStudent(foundStudent);
+    if (typeof window !== "undefined") { // localStorage erişimini güvence altına alıyoruz
+      const data = JSON.parse(localStorage.getItem("savedStudents"));
+      const foundStudent = data?.find(x => x.id == id);
+      setStudent(foundStudent);
+    }
   }, [id]);
 
   if (!student) {
