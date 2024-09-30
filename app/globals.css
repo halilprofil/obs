@@ -40,3 +40,149 @@ a {
     color-scheme: dark;
   }
 }
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table td {
+  color: #555;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ana container */
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Buton stili */
+button {
+  background-color: #0070f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+/* Öğrenci listesi */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Öğrenci ismi ve checkbox */
+li input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-left: 10px;
+}
+
+/* Öğrenci detay linki */
+a {
+  color: #0070f3;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Katılım bilgileri */
+div span {
+  font-size: 18px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+/* Öğrenci detay listesi */
+.student-list ul {
+  padding: 0;
+}
+
+.student-list li {
+  background-color: #fff;
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.student-list li:last-child {
+  border-bottom: none;
+}
+
+.student-list a {
+  color: #0070f3;
+}
+
+.student-list a:hover {
+  text-decoration: underline;
+}
